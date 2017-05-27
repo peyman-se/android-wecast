@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/action_like_this"
+        android:orderInCategory="100"
+        android:title="I like this" />
+
+    <item
+        android:id="@+id/action_make_offline"
+        android:orderInCategory="101"
+        android:title="make this offline" />
+
+    <item
+        android:id="@+id/action_comments"
+        android:orderInCategory="101"
+        android:title="comments" />
+</menu>

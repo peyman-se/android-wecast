@@ -1,8 +1,9 @@
-package com.example.peyman.listendigital;
+package com.example.peyman.listendigital.Adapters;
 
 /**
  * Created by Peyman on 11/27/16.
  */
+
 import android.content.Context;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -14,13 +15,17 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.peyman.listendigital.Models.Media;
+import com.example.peyman.listendigital.R;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
-public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHolder> {
+public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Album> albumList;
+    private List<Media> mediaList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
@@ -36,27 +41,27 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     }
 
 
-    public AlbumsAdapter(Context mContext, List<Album> albumList) {
+    public MediaAdapter(Context mContext, List<Media> mediaList) {
         this.mContext = mContext;
-        this.albumList = albumList;
+        this.mediaList = mediaList;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.album_card, parent, false);
+                .inflate(R.layout.channel_card, parent, false);
 
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Album album = albumList.get(position);
-        holder.title.setText(album.getName());
-        holder.count.setText(album.getNumOfSongs() + " songs");
+        Media media = mediaList.get(position);
+        holder.title.setText(media.getTitle());
+//        holder.count.setText(media.getBody() + " songs");
 
-        // loading album cover using Glide library
-        Picasso.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
+        // loading media cover using Glide library
+        Picasso.with(mContext).load(media.getCover()).into(holder.thumbnail);
 
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +78,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.menu_album, popup.getMenu());
+        inflater.inflate(R.menu.menu_channel, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
     }
@@ -89,11 +94,14 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.action_add_favourite:
-                    Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
+                case R.id.action_like_this:
+                    Toast.makeText(mContext, "You like this Cast", Toast.LENGTH_SHORT).show();
                     return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
+                case R.id.action_make_offline:
+                    Toast.makeText(mContext, "You have made this Cast offline", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.action_comments:
+                    Toast.makeText(mContext, "All comments for this Cast", Toast.LENGTH_SHORT).show();
                     return true;
                 default:
             }
@@ -103,6 +111,6 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return albumList.size();
+        return mediaList.size();
     }
 }
