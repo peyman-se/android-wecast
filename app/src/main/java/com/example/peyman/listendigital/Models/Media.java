@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Media {
 
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -32,6 +33,18 @@ public class Media {
     @SerializedName("channel_id")
     @Expose
     private Integer channelId;
+    @SerializedName("likes_count")
+    @Expose
+    private Integer likesCount;
+    @SerializedName("comments_count")
+    @Expose
+    private Integer commentsCount;
+    @SerializedName("is_liked")
+    @Expose
+    private Boolean isLiked;
+    @SerializedName("channel")
+    @Expose
+    private Channel channel;
 
     public Integer getId() {
         return id;
@@ -95,6 +108,38 @@ public class Media {
 
     public void setChannelId(Integer channelId) {
         this.channelId = channelId;
+    }
+
+    public Integer getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(Integer likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public Integer getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(Integer commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public void setChannel(Channel channel) {
+        this.channel = channel;
+    }
+
+    public Boolean getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(Boolean isLiked) {
+        this.isLiked = isLiked;
     }
 
     public Media(Integer channelId, String title, String media, String body, String cover) {

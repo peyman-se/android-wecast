@@ -82,7 +82,7 @@ public class PlayerActivity extends AppCompatActivity implements OnActionClicked
                 break;
             case R.id.btn1:
                 Log.i("peyman", "btn 1");
-                Intent intent = new Intent(PlayerActivity.this, MainActivity.class);
+                Intent intent = new Intent(PlayerActivity.this, EnterActivity.class);
                 startActivity(intent);
                 finish();
                 break;

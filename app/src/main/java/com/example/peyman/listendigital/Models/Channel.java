@@ -31,6 +31,15 @@ public class Channel {
     @SerializedName("subscribers_count")
     @Expose
     private Integer subscribersCount;
+    @SerializedName("likes_count")
+    @Expose
+    private Integer likesCount;
+    @SerializedName("comments_count")
+    @Expose
+    private Integer commentsCount;
+    @SerializedName("is_liked")
+    @Expose
+    private Boolean isLiked;
 
     public Integer getId() {
         return id;
@@ -95,6 +104,31 @@ public class Channel {
     public void setSubscribersCount(Integer subscribersCount) {
         this.subscribersCount = subscribersCount;
     }
+
+    public Integer getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(Integer likesCount) {
+        this.likesCount = likesCount;
+    }
+
+    public Integer getCommentsCount() {
+        return commentsCount;
+    }
+
+    public void setCommentsCount(Integer commentsCount) {
+        this.commentsCount = commentsCount;
+    }
+
+    public Boolean getIsLiked() {
+        return isLiked;
+    }
+
+    public void setIsLiked(Boolean isLiked) {
+        this.isLiked = isLiked;
+    }
+
 
     public Channel(Integer userId, String title, String description, String cover) {
 
