@@ -14,11 +14,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiUtils {
 
     public static final String BASE_URL = "http://10.0.2.2:8000/";
-    public static SharedPreferences sharedPreferences = getSharedPreferences("token");
+    public static SharedPreferences sharedPreferences;
 
     public static Calls callAuthServer(Context mContext) {
         sharedPreferences = mContext.getSharedPreferences("token", Context.MODE_PRIVATE);
-        token = sharedPreferences.getString("token", "");
+        String token = sharedPreferences.getString("token", "");
         return RetrofitClient.getClient(BASE_URL, token).create(Calls.class);
     }
 

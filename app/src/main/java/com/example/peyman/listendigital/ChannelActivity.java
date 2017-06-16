@@ -1,9 +1,7 @@
 package com.example.peyman.listendigital;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -43,7 +41,6 @@ public class ChannelActivity extends AppCompatActivity implements View.OnClickLi
     private List<Media> mediaList;
     public ProgressDialog progressDialog;
     private Calls serverCall;
-    public SharedPreferences sharedPreferences;
 
     private Boolean isFabOpen = false;
     private FloatingActionButton fab;
@@ -70,12 +67,10 @@ public class ChannelActivity extends AppCompatActivity implements View.OnClickLi
             }
         });
 
-        sharedPreferences = this.getSharedPreferences("token", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         progressDialog = new ProgressDialog(this);
-        serverCall = ApiUtils.callAuthServer(token);
+        serverCall = ApiUtils.callAuthServer(this);
 
         mediaList = new ArrayList<>();
         adapter = new MediaAdapter(this, mediaList);

@@ -86,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                progressDialog.dismiss();
                 Toast.makeText(LoginActivity.this, "Something wrong with server connection.", Toast.LENGTH_LONG).show();
             }
         });

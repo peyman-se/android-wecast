@@ -5,12 +5,18 @@ import com.example.peyman.listendigital.Models.Media;
 
 import java.util.ArrayList;
 
+import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.Streaming;
+import retrofit2.http.Url;
 
 /**
  * Created by Peyman on 7/9/16.
@@ -41,12 +47,45 @@ public interface Calls {
             @Field("password") String password
     );
 
+    @FormUrlEncoded
+    @POST("/api/channels/{channelId}/like")
+    Call<ResponseBody> likeChannel(
+            @Path("channelId") Long channelId
+    );
 
-//    @Multipart
-//    @POST("ANDROID/test.php")
-//    Call<ResponseBody> upload(@Part("description") RequestBody description,
-//                              @Part MultipartBody.Part file);
-//
+    @FormUrlEncoded
+    @POST("/api/channels/{channelId}/dislike")
+    Call<ResponseBody> disLikeChannel(
+            @Path("channelId") Long channelId
+    );
+
+    @FormUrlEncoded
+    @POST("/api/media/{mediaId}/like")
+    Call<ResponseBody> likeMedia(
+            @Path("mediaId") Long mediaId
+    );
+
+    @FormUrlEncoded
+    @POST("/api/media/{mediaId}/dislike")
+    Call<ResponseBody> disLikeMedia(
+            @Path("mediaId") Long mediaId
+    );
+
+    @Multipart
+    @POST("/api/media/upload")
+    Call<ResponseBody> uploadMedia(
+            @Part MultipartBody.Part media
+    );
+
+    @GET("/api/media/{mediaId}/stream")
+    Call<String> streamMedia(
+            @Path("mediaId") Long mediaId
+    );
+
+    @Streaming
+    @GET
+    Call<ResponseBody> downloadFileWithDynamicUrlAsync(@Url String fileUrl);
+
 //    @FormUrlEncoded
 //    @POST("ANDROID/Data.php")
 //    Call<List<QuestionObject>> getQuestion(

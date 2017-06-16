@@ -1,9 +1,7 @@
 package com.example.peyman.listendigital;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -50,7 +48,6 @@ public class EnterActivity extends AppCompatActivity
     private ChannelAdapter adapter;
     private List<Channel> channelList;
     private Calls serverCall;
-    public SharedPreferences sharedPreferences;
 
     public ProgressDialog progressDialog;
 
@@ -66,8 +63,6 @@ public class EnterActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         initCollapsingToolbar();
-        sharedPreferences = this.getSharedPreferences("token", Context.MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", "");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,7 +74,6 @@ public class EnterActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         progressDialog = new ProgressDialog(this);
-        Log.i("peyman", "Enter activity token is " + token);
         serverCall = ApiUtils.callAuthServer(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);

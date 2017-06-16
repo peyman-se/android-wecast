@@ -15,9 +15,7 @@
         <activity
             android:name=".EnterActivity"
             android:label="@string/title_activity_enter"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".MyChannelsActivity" />
         <activity
             android:name=".LatestCastActivity"
@@ -30,7 +28,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"/>
+        <activity android:name=".RegisterActivity" />
+
+        <service
+            android:name=".Streaming.Player"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
